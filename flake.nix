@@ -2,7 +2,7 @@
   description = "My personal NixOS configuration";
 
   inputs = {
-    nixpkgs = "github:/nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   };
 
   outputs = { nixpkgs, ... }: {
@@ -10,5 +10,5 @@
       system = "x86_64-linux";
       modules = [ ./configuration.nix ];
     };
-  }
+  };
 }
