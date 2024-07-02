@@ -4,7 +4,7 @@ Configuration for my personal nixOS setup.
 
 ## Partition layout
 
-- `/dev/nvme1n1p1` -- /boot 512MB, FAT32
+- `/dev/nvme1n1p1` -- /boot 1GB, FAT32
 - `/dev/nvme1n1p2` -- the rest, btrfs
   - `@` -- `/` mount options: `compress=zstd`
   - `@home` -- `/home` mount options: `compress=zstd`
