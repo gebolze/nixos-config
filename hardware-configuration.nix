@@ -16,7 +16,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/9d506a80-d05d-409d-9471-ccea13798309";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "compress=zstd" ];
     };
 
   fileSystems."/.swap" =
@@ -34,13 +34,13 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/9d506a80-d05d-409d-9471-ccea13798309";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "compress=zstd" ];
     };
 
   fileSystems."/nix" =
     { device = "/dev/disk/by-uuid/9d506a80-d05d-409d-9471-ccea13798309";
       fsType = "btrfs";
-      options = [ "subvol=@nix" ];
+      options = [ "subvol=@nix" "compress=zstd" "noatime" ];
     };
 
   swapDevices = [ ];
