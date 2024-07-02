@@ -43,6 +43,12 @@
     modesetting.enable = true;
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
