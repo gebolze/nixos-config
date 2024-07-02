@@ -35,6 +35,9 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   };
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
