@@ -84,6 +84,7 @@
     packages = with pkgs; [
       firefox
       git
+      keepassxc
       tree
     ];
   };
