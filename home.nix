@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     firefox
     git
+    heroic
     htop
     keepassxc
     tree
