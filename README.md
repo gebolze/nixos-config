@@ -20,5 +20,5 @@ accordingly.**
 To apply the configuration the follow command can be used:
 ```sh
 $ sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
-  --mode disko /disk-config.nix
+  --mode disko --arg disks '[ "/dev/nvme1n1" ]' ./disko-config.nix
 ```
