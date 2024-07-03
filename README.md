@@ -1,6 +1,6 @@
 # nixos-config
 
-Configuration for my personal nixOS setup.
+Configuration for my personal NixOS setup.
 
 ## Partition layout
 
@@ -12,7 +12,7 @@ Configuration for my personal nixOS setup.
   - `@swap` -- `/.swap`
     - swapfile 32GB
 
-The layout above is declaratively configured in `disk-config.nix` file.
+The layout above is declaratively configured in `disko-config.nix` file.
 
 **Before you apply the configuration review the file and update the device name
 accordingly.**
@@ -21,4 +21,9 @@ To apply the configuration the follow command can be used:
 ```sh
 $ sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
   --mode disko --arg disks '[ "/dev/nvme1n1" ]' ./disko-config.nix
+```
+
+NixOS itself can be installed as follows:
+```
+$ sudo nix-install --flake .#ryzen
 ```
