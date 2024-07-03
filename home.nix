@@ -42,6 +42,15 @@
     ];
   };
 
+  programs.bash = {
+    enable = true;
+    historyControl = [ "ignorespace" "ignoredups" ];
+    shellAliases = {
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+    };
+  };
+
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
