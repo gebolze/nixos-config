@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./pipewire.nix
     ];
 
 
@@ -80,13 +81,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Sound configuration
-  hardware.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
