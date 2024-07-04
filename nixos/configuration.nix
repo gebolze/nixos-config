@@ -54,6 +54,10 @@
   # Configuring the NIVIDIA driver
   hardware.nvidia = {
     modesetting.enable = true;
+    open = false; # don't use the open source driver
+    nvidiaSettings = false;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
   };
 
   hardware.opengl = {
