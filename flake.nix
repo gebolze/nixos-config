@@ -13,19 +13,26 @@
     };
   };
 
-  outputs = { nixpkgs, disko, home-manager, ... }: {
+  outputs = { self, nixpkgs, disko, home-manager, ... }@inputs:
+  let
+    inherit (self) outputs;
+  in
+  {
     nixosConfigurations.ryzen = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
       	disko.nixosModules.disko
       	./disko-config.nix { _module.args.disks = [ "/dev/nvme1n1" ]; }
       	./configuration.nix
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.gebolze = import ./home.nix;
-	}
       ];
+    };
+
+    homeConfigurations = {
+      "gebolze@ryzen" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manger requires 'pkgs' instance
+	extraSpecialArgs = { inherit inputs outputs; };
+        modules = [ ./home-manager/home.nix ];
+      };
     };
   };
 }
