@@ -10,6 +10,23 @@
       ./hardware-configuration.nix
     ];
 
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
+
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
+    };
+
+    channel.enable = false; # disable channels
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -34,9 +51,6 @@
     keyMap = "de-latin1-nodeadkeys";
   #   useXkbConfig = true; # use xkb.options in tty.
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Configuring the NIVIDIA driver
   hardware.nvidia = {
@@ -82,9 +96,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
  };
-
-  # Enable the Flakes feature and the accompanying new nix command-line tool
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
