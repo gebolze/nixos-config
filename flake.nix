@@ -21,9 +21,9 @@
     nixosConfigurations.ryzen = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-      	disko.nixosModules.disko
-      	./disko-config.nix { _module.args.disks = [ "/dev/nvme1n1" ]; }
-      	./configuration.nix
+        disko.nixosModules.disko
+        ./nixos/disko-config.nix { _module.args.disks = [ "/dev/nvme1n1" ]; }
+        ./nixos/configuration.nix
       ];
     };
 
