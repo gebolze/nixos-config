@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  imports = [ ./bash.nix ];
+
   home.username = "gebolze";
   home.homeDirectory = "/home/gebolze";
 
@@ -43,15 +45,6 @@
         };
       }
     ];
-  };
-
-  programs.bash = {
-    enable = true;
-    historyControl = [ "ignorespace" "ignoredups" ];
-    shellAliases = {
-      ls = "ls --color=auto";
-      grep = "grep --color=auto";
-    };
   };
 
   programs.home-manager.enable = true;
