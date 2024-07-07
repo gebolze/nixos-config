@@ -18,19 +18,21 @@
     inherit (self) outputs;
   in
   {
-    nixosConfigurations.ryzen = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        disko.nixosModules.disko
-        ./nixos/disko-config.nix { _module.args.disks = [ "/dev/nvme1n1" ]; }
-        ./nixos/configuration.nix
-      ];
+    nixosConfigurations = {
+      ryzen = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./nixos/hosts/ryzen/disko-config.nix { _module.args.disks = [ "/dev/nvme1n1" ]; }
+          ./nixos/hosts/ryzen/configuration.nix
+        ];
+      };
     };
-
+    
     homeConfigurations = {
       "gebolze@ryzen" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manger requires 'pkgs' instance
-	extraSpecialArgs = { inherit inputs outputs; };
+        extraSpecialArgs = { inherit inputs outputs; };
         modules = [ ./home-manager/home.nix ];
       };
     };

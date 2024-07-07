@@ -12,7 +12,7 @@ Configuration for my personal NixOS setup.
   - `@swap` -- `/.swap`
     - swapfile 32GB
 
-The layout above is declaratively configured in `nixos/disko-config.nix` file.
+The layout above is declaratively configured in `nixos/hosts/<hostname>/disko-config.nix` file.
 
 **Before you apply the configuration review the file and update the device name
 accordingly.**
@@ -20,7 +20,7 @@ accordingly.**
 To apply the configuration the follow command can be used:
 ```sh
 $ sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
-  --mode disko --arg disks '[ "/dev/nvme1n1" ]' ./nixos/disko-config.nix
+  --mode disko --arg disks '[ "/dev/nvme1n1" ]' ./nixos/hosts/ryzen/disko-config.nix
 ```
 
 NixOS itself can be installed as follows:
