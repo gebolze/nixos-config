@@ -29,10 +29,10 @@
     channel.enable = false; # disable channels
   };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  # Use the grub loader BIOS
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda";
+  
   networking.hostName = "testing";
 
   # Pick only one of the below networking options.

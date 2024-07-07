@@ -7,9 +7,16 @@
         content = {
           type = "gpt";
           partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02";
+              priority = 0;
+            };
+
             ESP = {
               type = "EF00";
               size = "1G";
+              priority = 1;
               content = {
                 type = "filesystem";
                 format = "vfat";
