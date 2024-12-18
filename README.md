@@ -25,5 +25,5 @@ $ sudo nix --experimental-features "nix-command flakes" run github:nix-community
 
 NixOS itself can be installed as follows:
 ```
-$ sudo nix-install --flake .#ryzen
+$ sudo nixos-install --flake .#ryzen
 ```
