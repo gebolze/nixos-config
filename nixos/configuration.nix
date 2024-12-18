@@ -12,7 +12,6 @@
       ./pipewire.nix
     ];
 
-
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -60,10 +59,8 @@
     powerManagement.finegrained = false;
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
   };
 
   # Enable the X11 windowing system.
