@@ -20,7 +20,7 @@ accordingly.**
 To apply the configuration the follow command can be used:
 ```sh
 $ sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
-  --mode disko --arg disks '[ "/dev/nvme1n1" ]' ./nixos/disko-config.nix
+  --mode destroy,format,mount --arg disks '[ "/dev/nvme1n1" ]' ./nixos/disko-config.nix
 ```
 
 NixOS itself can be installed as follows:
