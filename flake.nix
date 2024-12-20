@@ -26,15 +26,16 @@
         disko.nixosModules.disko
         ./nixos/disko-config.nix { _module.args.disks = [ "/dev/nvme1n1" ]; }
         ./nixos/configuration.nix
-      ];
-    };
 
-    homeConfigurations = {
-      "gebolze@ryzen" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs outputs; };
-        modules = [ ./home-manager/home.nix ];
-      };
+        # make home-manager as a module of nixos
+        # so that home-manager configuration will be deployed automatically when executing
+        # `nixos-rebuild switch`
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.gebolze = import ./home-manager/home.nix;
+        }
+      ];
     };
   };
 }
