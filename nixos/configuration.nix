@@ -34,9 +34,13 @@
 
   networking.hostName = "ryzen";
 
+  # configure wireless using iwd
+  networking.wireless.iwd.enable = true;
+
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.wifi.backend = "iwd"; # use iwd as wifi backend for networkmanager
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
