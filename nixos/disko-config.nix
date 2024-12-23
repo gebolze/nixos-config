@@ -17,40 +17,40 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-
-            root = {
+            luks = {
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ]; # override existing partition
+                type = "luks";
+                name = "crypted";
+                settings = {
+                  allowDiscards = true;
+                };
 
-                subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ]; # override existing partition
 
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-
-                  "@swap" = {
-                    mountpoint = "/.swap";
-                    swap = {
-                      swapfile = {
-                        size = "32G";
-                      };
+                  subvolumes = {
+                    "@" = {
+                      mountpoint = "/";
+                      mountOptions = [ "compress=zstd" "noatime"];
+                    };
+                    "@home" = {
+                      mountpoint = "/home";
+                      mountOptions = [ "compress=zstd" "noatime"];
+                    };
+                    "@nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "@swap" = {
+                      mountpoint = "/.swap";
+                      swap.swapfile.size = "32G";
                     };
                   };
                 };
               };
-            };
+            };            
           };
         };
       };
